@@ -1,0 +1,137 @@
+.header {
+    padding: 0 16px; /* Add this line to add padding to the toolbar */
+    position: fixed; /* Add this line to make the header fixed */
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    z-index: 1000; /* Add this line to make sure the header is above the other elements */
+  }
+  .ub-logo-title {
+    transform: scale(1.4);
+    /* filter: grayscale(100%); */
+    /* width: 300px; Adjust the size as needed */
+  }
+  .cart-item-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    padding: 2px 5px;
+  }
+  /* .custom-toolbar {
+  background-color: #FFFFFF;   
+  padding: 30px;
+  height: 70px;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+  position: sticky;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.custom-toolbar a {
+  color: #3F51B5;
+  font-size: 15px;
+  font-weight: 450;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.custom-toolbar .mat-icon {
+  color: black;
+  transform: scale(1.4);
+} */
+
+  
+  .logo {
+    height: 40px;
+    margin-right: 16px;
+  }
+  .content-wrapper {
+    margin-top: 64px; /* Add this line to create space for the header */
+  }
+  .title {
+    transform: scale(1.2);
+
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 16px;
+  }
+  
+  .example-drawer {
+    margin-top: -6px;
+    background-color: #FFFFFF;
+    padding: 5px;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
+  }
+  
+  .mat-button-toggle-checked {
+    background-color:#BDCB47;
+    color: white;
+    border-radius: 5px;
+  }
+  
+  ::ng-deep .mat-drawer-inner-container::-webkit-scrollbar {
+    display: none;
+    overflow: auto;
+  }
+  
+  ::ng-deep .mat-drawer-content {
+    overflow: auto !important;
+  }
+  
+  .mat-icon {
+    transform: scale(1.3);
+  }
+  .logo {
+    height: 40px;
+    margin-left: 20px;
+    margin-top: 5px; /* Adjust the margin-top here */
+  }
+  
+  .title {
+    margin-left: 15px;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 64px; /* Add line-height property to vertically align the title */
+  }
+  .mat-button-toggle {
+    font-size: medium;
+  border-radius: 5px;
+  margin-top: 8px;
+  font-family: 'Nunito Semibold', sans-serif;
+  font-size: 16px;
+  font-style: bold;
+  width: 215px;
+  height: 48px; /* Adjust the width here */
+  padding: 8px 12px; /* Adjust the padding for the height here */
+  transition: all 0.3s ease-in-out;
+  }
+  
+  ::ng-deep .mat-button-toggle-label-content {
+    text-align: start;
+  }
+  
+  .mat-button-toggle:hover {
+    background-color:#E0E75C;
+    color: white;
+    cursor: pointer;
+  }
+  
+  ::ng-deep .parametersPanel .mat-expansion-panel-body {
+    padding: 0 !important;
+  }
+  
+  .mat-button-toggle-group {
+    outline: none !important;
+    border: none;
+  }

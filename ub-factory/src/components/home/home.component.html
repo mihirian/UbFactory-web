@@ -1,0 +1,59 @@
+<!-- home.component.html -->
+<div fxLayout="column" style="margin: 15px;">
+  <div class="scrolling-text-container" style="margin-left: 90px;">
+    <span class="scrolling-text">
+      <p>{{marqueeName}}</p>
+    </span>
+  </div>
+  <div fxLayout="column">
+     <app-carousel></app-carousel>
+ </div>
+ <div fxLayout="row" style="padding: 50px;  margin-top: 110px;
+ ">
+  <div class="section products-container">
+    <h2 class="section-title"  style="padding:5px;border-radius: 10px;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;background-color: #BDCB47; color: white;font-style: italic;"> Product's</h2>
+    <div class="product-list" fxLayoutAlign="start" style="margin-left:100px">
+      <div *ngFor="let product of products" class="product-container">
+        <div class="product-card">
+          <div class="product-image-container">
+            <img class="product-image" [src]="product.image" alt="{{ product.name }}" />
+            <div class="product-overlay" *ngIf="product.quantity === 0">
+              <button class="add-to-cart-button" (click)="addToCart(product)">
+                <span>Add to Cart</span>
+              </button>
+            </div>
+            <div class="product-quantity" style="margin-top: 20px;margin-bottom: 5px;" *ngIf="product.quantity > 0">
+              <div class="quantity-control">
+                <button class="quantity-button minus" (click)="decreaseQuantity(product)">
+                  -
+                </button>
+                <span class="quantity">{{ product.quantity }}</span>
+                <button class="quantity-button plus" (click)="increaseQuantity(product)">
+                  +
+                </button>
+              </div>
+          </div>
+          </div>
+        </div>
+        <div class="product-details">
+          <h3 class="product-name">{{ product.name }}</h3>
+          <p class="product-description">{{ product.description }}</p>
+          <p class="product-price">
+            <span style="text-decoration: line-through;font-weight: 100;margin-right: 5px;">{{ product.originalPrice | currency }}</span>
+            <span style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">{{ product.price | currency }} (Exclusive of Tax)</span>
+
+          </p>      
+          <span *ngIf="product.itemsLeft <= 10 && product.itemsLeft > 5" class="blink-slow">Hurry! Only {{ product.itemsLeft }} items left!</span>
+          <span *ngIf="product.itemsLeft <= 5 && product.itemsLeft > 1" class="blink-medium">Hurry! Only {{ product.itemsLeft }} items left!</span>
+          <span *ngIf="product.itemsLeft === 1" class="blink-fast">Hurry! Only {{ product.itemsLeft }} item left!</span>     
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+<app-footer></app-footer>
+

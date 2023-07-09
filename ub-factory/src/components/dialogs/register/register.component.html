@@ -1,0 +1,62 @@
+<!-- register.component.html -->
+<mat-card>
+    <mat-card-content>
+      <h2>Register</h2>
+      <form [formGroup]="registerForm" fxLayout="column" fxLayoutGap="10px">
+        <!-- Your registration form fields -->
+        <mat-form-field>
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" required>
+          <mat-error *ngIf="registerForm.controls?.['firstName']?.hasError('required')">
+            First Name is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" required>
+          <mat-error *ngIf="registerForm.controls?.['lastName']?.hasError('required')">
+            Last Name is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Mobile Number</mat-label>
+          <input matInput formControlName="mobile" required>
+          <mat-error *ngIf="registerForm.controls?.['mobile']?.hasError('required')">
+            Mobile Number is required
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" required>
+          <mat-error *ngIf="registerForm.controls?.['email']?.hasError('required')">
+            Email is required
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" type="password" required>
+          <mat-error *ngIf="registerForm.controls?.['password']?.hasError('required')">
+            Password is required
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label>Confirm Password</mat-label>
+          <input matInput formControlName="confirmPassword" type="password" required>
+          <mat-error *ngIf="registerForm.controls?.['confirmPassword']?.hasError('required')">
+            Confirm Password is required
+          </mat-error>
+        </mat-form-field>
+  
+        <!-- Your registration form buttons -->
+        <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10px">
+          <button mat-raised-button color="primary" (click)="register()" [disabled]="!registerForm.valid || registerForm.get('confirmPassword')?.invalid">Register</button>
+          <button mat-raised-button (click)="close()">Cancel</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  

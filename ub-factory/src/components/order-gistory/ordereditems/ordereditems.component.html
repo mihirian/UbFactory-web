@@ -1,0 +1,12 @@
+<h2 mat-dialog-title class="dialog-title">Products in Order</h2>
+
+<div class="products-grid">
+  <div *ngFor="let product of data" class="product-card">
+    <img [src]="product.imageUrl" alt="Product image" class="product-image">
+    <h3 class="product-name">{{product.name}}</h3>
+    <p class="product-price">Price: {{product.price | currency}}</p>
+    <p class="product-quantity">Quantity: {{product.stockQuantity}}</p>
+  </div>
+</div>
+
+<button mat-raised-button color="primary" mat-dialog-close class="close-button">Close</button>

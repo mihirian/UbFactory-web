@@ -1,0 +1,43 @@
+<div class="container">
+  <h2>Order History</h2>
+  <div class="order-container mat-elevation-z8">
+    <mat-table [dataSource]="orders">
+      
+      <!-- Order ID Column -->
+      <ng-container matColumnDef="orderId">
+        <mat-header-cell *matHeaderCellDef>Order ID</mat-header-cell>
+        <mat-cell *matCellDef="let order">{{ order.orderId }}</mat-cell>
+      </ng-container>
+
+      <!-- Order Amount Column -->
+      <ng-container matColumnDef="orderAmount">
+        <mat-header-cell *matHeaderCellDef>Total</mat-header-cell>
+        <mat-cell *matCellDef="let order">{{ order.orderAmount | currency }}</mat-cell>
+      </ng-container>
+
+      <!-- Order Status Column -->
+      <ng-container matColumnDef="orderStatus">
+        <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+        <mat-cell *matCellDef="let order"><div class="status" [ngClass]="order.orderStatus.toLowerCase()">{{ order.orderStatus }}</div></mat-cell>
+      </ng-container>
+
+      <!-- Payment Status Column -->
+      <ng-container matColumnDef="paymentStatus">
+        <mat-header-cell *matHeaderCellDef>Payment</mat-header-cell>
+        <mat-cell *matCellDef="let order"><div class="status" [ngClass]="order.paymentStatus.toLowerCase()">{{ order.paymentStatus }}</div></mat-cell>
+      </ng-container>
+
+      <!-- Products Column -->
+      <ng-container matColumnDef="products">
+        <mat-header-cell *matHeaderCellDef>Products</mat-header-cell>
+        <mat-cell *matCellDef="let order">
+          <button mat-button color="primary" (click)="openProductDetails(order.products)">View Products</button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+</div>
+<app-footer></app-footer>

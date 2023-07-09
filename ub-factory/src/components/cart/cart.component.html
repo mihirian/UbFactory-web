@@ -1,0 +1,71 @@
+<div class="cart-container" style="margin-bottom: 70px;">
+  <h2 class="section-title"  style="padding:5px;border-radius: 10px;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;background-color: #BDCB47; color: white;font-style: italic;">Your Cart</h2>
+  <ng-container *ngIf="(cartItems$ | async) as cartItems">
+      <div *ngIf="cartItems.length > 0; else emptyCart">
+        <mat-table #table [dataSource]="dataSource">
+          <!-- Columns -->
+      
+          <ng-container matColumnDef="product">
+            <mat-header-cell *matHeaderCellDef>Product</mat-header-cell>
+            <mat-cell *matCellDef="let product">
+              <div class="product-info">
+                <img class="product-image" [src]="product.image" alt="{{ product.name }}">
+
+                <div>{{ product.name }}</div>
+                <div class="description">{{ product.description }}</div>
+                <div class="items-left">{{ product.itemsLeft }} left in stock</div>
+              </div>
+            </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="price">
+            <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
+            <mat-cell *matCellDef="let product">{{ product.price | currency }}</mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="quantity">
+            <mat-header-cell *matHeaderCellDef>Quantity</mat-header-cell>
+            <mat-cell *matCellDef="let product">
+              <button mat-icon-button (click)="decreaseQuantity(product)"><mat-icon>remove</mat-icon></button>
+              {{ product.quantity }}
+              <button mat-icon-button (click)="increaseQuantity(product)"><mat-icon>add</mat-icon></button>
+              </mat-cell>
+              </ng-container> <ng-container matColumnDef="subtotal">
+                <mat-header-cell *matHeaderCellDef>Subtotal</mat-header-cell>
+                <mat-cell *matCellDef="let product">{{ product.price * product.quantity | currency }}</mat-cell>
+              </ng-container>
+          
+              <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+                <mat-cell *matCellDef="let product">
+                  <button mat-icon-button (click)="removeFromCart(product)"><mat-icon>delete</mat-icon></button>
+                </mat-cell>
+              </ng-container>
+          
+              <!-- Table Header -->
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <!-- Table Rows -->
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+            <!-- Total and Checkout -->
+            <div fxLayout="row" fxLayoutAlign="space-between center" style="margin-top: 1.5rem;">
+              <div fxLayout="column">
+                <div class="total">
+                  Total (before tax): {{ total$ | async | currency }}
+                </div>
+                <div class="tax">
+                  Tax: {{shippingcharge | currency }}
+                </div>
+                <div class="total-with-tax">
+                  Total (with tax): {{ (total$ | async) + shippingcharge| currency }}
+                </div>              </div>
+             
+              <!-- <button mat-raised-button color="primary">Checkout</button> -->
+            </div>
+          </div>  </ng-container>
+          <ng-template #emptyCart>
+          <div class="empty-cart">Your cart is empty. Start adding products!</div>
+          </ng-template>
+          
+          </div>
+

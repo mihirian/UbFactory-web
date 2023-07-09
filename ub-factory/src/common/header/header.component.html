@@ -1,0 +1,110 @@
+<mat-toolbar style="background-color:#BDCB47;color:white" class="header" (mouseover)="isActive=true" (mouseout)="isActive=false"
+  [class.mat-elevation-z1]="!isActive" [class.mat-elevation-z6]="isActive">
+  <div fxLayout="row" fxLayoutAlign="space-between center" fxFlexFill>
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <a routerLink="/">
+        <img style="margin-top: 10px;margin-left: 20px;" src="assets/images/logo.png" alt="ubfactory Logo" class="logo" />
+      </a>
+      <span class="title" style="margin-left: 20px;">ubfactory</span>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <a>
+        <img style="margin-top: 10px;margin-right: -100px;" src="assets/images/ub-logo-title.png" alt="ubfactory Logo" class="logo ub-logo-title" />
+      </a>
+    </div>
+   
+    <div fxLayout="row" fxLayoutAlign="end center">
+      <a>
+        <img style="margin-top: 10px;margin-right: 60px;" src="assets/images/pre-order.jpeg" alt="ubfactory Logo" class="logo" />
+      </a>
+      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button *ngIf="isLoggedIn" mat-icon-button routerLink="/cart">
+        <mat-icon>shopping_cart</mat-icon>
+        <span *ngIf="totalCartItems > 0" class="cart-item-count">{{ totalCartItems }}</span>
+      </button>
+      <button *ngIf="!isLoggedIn" mat-icon-button (click)="openLoginDialog()">
+        <mat-icon>shopping_cart</mat-icon>
+        <span *ngIf="totalCartItems > 0" class="cart-item-count">{{ totalCartItems }}</span>
+      </button>
+
+      <!-- Add the menu button and options -->
+      <mat-menu #menu="matMenu">
+        <button *ngIf="!isLoggedIn" mat-menu-item (click)="openLoginDialog()">
+          <mat-icon>login</mat-icon>
+          <span>Login</span>
+        </button>
+        <button *ngIf="!isLoggedIn" mat-menu-item (click)="openRegisterDialog()">
+          <mat-icon>person_add</mat-icon>
+          <span>Register</span>
+        </button>
+        <button *ngIf="!isLoggedIn" mat-menu-item (click)="forgotPassword(false)">
+          <mat-icon>lock_open</mat-icon>
+          <span>Forgot Password</span>
+        </button>
+        <button *ngIf="isLoggedIn" mat-menu-item  routerLink="/order-history">
+          <mat-icon>history</mat-icon>
+          <span>Order History</span>
+        </button>
+        <button *ngIf="isLoggedIn" mat-menu-item (click)="changePassword(false)">
+          <mat-icon>lock_open</mat-icon>
+          <span>Change Password</span>
+        </button>
+        <button *ngIf="isLoggedIn" mat-menu-item (click)="signOut()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Sign Out</span>
+        </button>
+      </mat-menu>
+
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </div>
+  </div>
+</mat-toolbar>
+
+  
+  <mat-drawer-container>
+    <mat-drawer [opened]="isMenuOpen" #drawer class="example-drawer" style="width: min-content">
+      <mat-nav-list>
+        <div fxLayout="column">
+            <mat-button-toggle-group [formControl]="drawerButtonControl" fxLayout="column" vertical style="padding-top: 64px;"> <!-- Add padding-top here -->
+                <mat-button-toggle value="/" routerLink="/">
+                  <mat-icon style="margin-right: 10px;">home</mat-icon>Home
+                </mat-button-toggle>
+                <mat-button-toggle value="/shop" routerLink="/shop">
+                  <mat-icon style="margin-right: 10px;">storefront</mat-icon>Shop
+                </mat-button-toggle>
+                <mat-button-toggle value="/cart" *ngIf="isLoggedIn"   routerLink="/cart">
+                  <mat-icon style="margin-right: 10px;">shopping_cart</mat-icon>Cart
+                </mat-button-toggle>
+                <mat-button-toggle value="/profile" *ngIf="isLoggedIn"  routerLink="/profile">
+                  <mat-icon style="margin-right: 10px;">account_circle</mat-icon>Profile
+                </mat-button-toggle>
+                <mat-button-toggle value="/cart" *ngIf="!isLoggedIn"   (click)="openLoginDialog()">
+                  <mat-icon style="margin-right: 10px;">shopping_cart</mat-icon>Cart
+                </mat-button-toggle>
+                <mat-button-toggle value="/profile" *ngIf="!isLoggedIn"  (click)="openLoginDialog()">
+                  <mat-icon style="margin-right: 10px;">account_circle</mat-icon>Profile
+                </mat-button-toggle>
+                <mat-button-toggle value="/order-history" *ngIf="isLoggedIn" routerLink="/order-history">
+                  <mat-icon style="margin-right: 10px;">history</mat-icon>Order History
+                </mat-button-toggle>
+                
+                
+              </mat-button-toggle-group>
+              
+        </div>
+      </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-content class="content-wrapper" style="height: 100vh; overflow-y: auto; overflow: hidden">
+        <div style="min-height: 100vh;background-image: url('assets/images/bg.jpg'); background-size: 100% 100%; padding: 10px">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+  

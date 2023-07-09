@@ -1,0 +1,29 @@
+<mat-card>
+    <mat-card-content>
+      <h2>Login</h2>
+      <form [formGroup]="loginForm" fxLayout="column" fxLayoutGap="20px">
+        <!-- Your login form fields -->
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" required>
+          <mat-error *ngIf="loginForm.controls?.['email']?.hasError('required')">
+            Email is required
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" type="password" required>
+          <mat-error *ngIf="loginForm.controls?.['password']?.hasError('required')">
+            Password is required
+          </mat-error>
+        </mat-form-field>
+  
+        <!-- Your login form buttons -->
+        <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10px">
+          <button mat-raised-button color="primary" (click)="login()" [disabled]="!loginForm.valid">Login</button>
+          <button mat-raised-button (click)="close()">Cancel</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>

@@ -1,0 +1,31 @@
+<div *ngIf="firstStep && secondStep && thirdStep">
+    <mat-horizontal-stepper #stepper [linear]="true">
+        <mat-step [stepControl]="firstStep">
+      <ng-template matStepLabel>Cart</ng-template>
+      <app-cart (totalAmount)="onTotalAmountChanged($event)"></app-cart>
+      <div fxLayoutAlign="end" style="margin-right: 350px;padding: 10px;">
+        <button (click)="nextStep()" style="margin-top: -20px;" mat-raised-button color="primary">Proceed</button>
+
+      </div>
+        </mat-step>
+    <mat-step [stepControl]="secondStep">
+      <ng-template matStepLabel>Delivery Address</ng-template>
+      <app-delivery-address></app-delivery-address>
+      <!-- <app-profile></app-profile> -->
+      <div fxLayoutAlign="start" style="margin-left: 150px;margin-top: 150px;">
+        <button mat-raised-button style="margin-right: 50px;" color="primary" matStepperPrevious>Back</button>
+      <button mat-raised-button color="primary" matStepperNext>Next</button>
+      </div>
+      
+    </mat-step>
+    <mat-step [stepControl]="thirdStep">
+      <ng-template matStepLabel>Payment</ng-template>
+      <app-payment  [amount]="totalAmount"></app-payment>
+      <div fxLayoutAlign="end" style="margin-right: 780px;margin-top: 50px;">
+        <button mat-raised-button style="margin-right: 50px;" color="primary" matStepperPrevious>Back</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>
+  <app-footer></app-footer>
+  

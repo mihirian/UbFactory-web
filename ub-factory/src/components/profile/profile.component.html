@@ -1,0 +1,67 @@
+<div class="container">
+  <mat-card>
+    <mat-card-content>
+      <h2>User Profile</h2>
+      <form [formGroup]="profileForm" fxLayout="column" fxLayoutGap="20px">
+        <!-- User information -->
+        <div class="section">
+          <h3>Personal Information</h3>
+          <mat-divider></mat-divider>
+          <div fxLayout="column" fxLayoutGap="20px">
+            <mat-form-field>
+              <mat-label>Full Name</mat-label>
+              <input matInput formControlName="fullName" readonly>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" readonly>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Mobile Number</mat-label>
+              <input matInput formControlName="mobile" readonly>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- Shipping address -->
+        <div class="section">
+          <h3>Shipping Address
+            <button mat-icon-button *ngIf="!isShippingAddressEditable" (click)="toggleShippingAddressEditable()"><mat-icon>edit</mat-icon></button>
+            <button mat-icon-button *ngIf="isShippingAddressEditable" (click)="toggleShippingAddressEditable()"><mat-icon>close</mat-icon></button>
+          </h3>
+          <mat-divider></mat-divider>
+          <div fxLayout="column" fxLayoutGap="20px">
+            <mat-form-field>
+              <mat-label>Address</mat-label>
+              <input matInput formControlName="shippingAddress" [readonly]="!isShippingAddressEditable">
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Town</mat-label>
+              <input matInput formControlName="shippingTown" [readonly]="!isShippingAddressEditable">
+            </mat-form-field>
+            <mat-form-field>
+
+              <mat-label>State</mat-label>
+              <input matInput formControlName="shippingState" [readonly]="!isShippingAddressEditable">
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Pin Code</mat-label>
+              <input matInput formControlName="shippingZipCode" [readonly]="!isShippingAddressEditable">
+            </mat-form-field>
+          </div>
+        </div>
+
+       
+
+        <!-- Save button -->
+        <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10px">
+          <button mat-raised-button color="primary" (click)="save()" [disabled]="!profileForm.valid">Save</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+<app-footer></app-footer>

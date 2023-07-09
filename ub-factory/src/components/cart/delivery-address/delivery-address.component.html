@@ -1,0 +1,43 @@
+<div class="delivery-address">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Delivery Address</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="addressForm">
+       
+  
+          <div fxLayout="row">
+            <mat-form-field appearance="outline" fxFlex>
+              <mat-label>Street Address</mat-label>
+              <input matInput formControlName="shippingAddress">
+            </mat-form-field>
+          </div>
+  
+          <div fxLayout="row" fxLayoutGap="16px">
+            <mat-form-field appearance="outline" fxFlex>
+              <mat-label>Town</mat-label>
+              <input matInput formControlName="shippingTown">
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex>
+              <mat-label>State</mat-label>
+              <input matInput formControlName="shippingState">
+            </mat-form-field>
+          </div>
+  
+          <div fxLayout="row" fxLayoutGap="16px">
+            <mat-form-field appearance="outline" fxFlex>
+              <mat-label>Zip Code</mat-label>
+              <input matInput formControlName="shippingZipCode">
+            </mat-form-field>
+          
+          </div>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="editAddress()" *ngIf="!isEditing">Edit</button>
+        <button mat-raised-button color="primary" (click)="saveAddress()" *ngIf="isEditing">Save</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  
